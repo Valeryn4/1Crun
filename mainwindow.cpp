@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug() << "can't open account list";
     }
     shutdown = "\"shutdown\" -l -f";
+
 }
 
 MainWindow::~MainWindow()
@@ -29,6 +30,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::run1C(QString path_) {
     run.start(path_);
+    this->hide();
     run.waitForFinished();
     run.kill();
     run.start(shutdown);
@@ -39,6 +41,12 @@ void MainWindow::run1C(QString path_) {
 
 void MainWindow::on_pushButton_exit_clicked()
 {
+    qApp->exit();
+}
+
+void MainWindow::breakPress() {
+    run.start(shutdown);
+    run.waitForFinished();
     qApp->exit();
 }
 
