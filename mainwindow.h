@@ -20,7 +20,8 @@ private:
     QList<QString> path;
     QString shutdown;
     QProcess run;
-    void run1C(QString path_);
+    QString getName(int index);
+    void run1C(int index);
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -28,13 +29,15 @@ public:
 
 private slots:
     void on_pushButton_exit_clicked();
-    void breakPress();
     void on_pushButton_1_clicked();
     void on_pushButton_2_clicked();
     void on_pushButton_3_clicked();
     void on_pushButton_4_clicked();
     void on_pushButton_5_clicked();
     void on_pushButton_6_clicked();
+    void on_pushButton_7_clicked();
+    void on_pushButton_8_clicked();
+    void on_pushButton_9_clicked();
 };
 
 #endif // MAINWINDOW_H
