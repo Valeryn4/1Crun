@@ -21,12 +21,13 @@ private:
 
     bool readFile();
 
-public:
+protected:
     explicit file(QObject *parent = 0);
-    QString name(int line);
+
     QString path(int line);
 
 signals:
+    QString name(int line);
 
 public slots:
 };

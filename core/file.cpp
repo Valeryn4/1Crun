@@ -107,10 +107,12 @@ bool File::readFile() {
 }
 
 QString File::name(int line) {
+    qDebug() << "return: " <<  listName[line];
     return listName[line];
 }
 
 QString File::path(int line) {
+    qDebug() << "return: " << listPath[line];
     return listPath[line];
 }
 
