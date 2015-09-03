@@ -19,9 +19,15 @@ public:
     ~MainWindow();
 signals:
     void signal_run(int n);
+    void signal_exit();
+    void openConfig();
 private slots:
     void on_pushButton_1_clicked();
     void on_pushButton_2_clicked();
+
+    void on_pushButton_exit_clicked();
+
+    void on_pushButton_clicked();
 
 public slots:
 

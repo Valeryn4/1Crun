@@ -20,10 +20,10 @@ public:
 signals:
     void signal_CRun(int n);
     void signal_Cstop();
-    void qAppExit();
 
-private slots:
+public slots:
     void runProcess(int n);
+    void openConfig();
     void engProcess();
 };
 

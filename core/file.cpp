@@ -36,28 +36,27 @@ bool File::readFile() {
     bool flag_empty;
     bool flag_name;
     bool flag_path;
-    int line;
     QString tempLine;
     QString tempName;
     QString tempPath;
     listName.clear();
     listPath.clear();
+    qDebug() << "Start read conf.txt";
     if (!userConf.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Error open conf.txt";
         qWarning("Error open conf.txt");
         userConf.close();
         return false;
     } else
-    // [0] "name" <path/to/file.exe>
-    //  ^     ^         ^
-    //index   |         |
-    //     name button  |
+    // [0] "name" <"path/to/file.exe" -arg -arg2>
+    //  ^     ^         ^                ^
+    //index   |         |                |
+    //     name button  |             arguments
     //              path to file
     //  #hello
     //  ^
-    //commit
+    //commit  
     while (!userConf.atEnd()) {
-        line = 0;
         flag_empty = false;
         flag_name = false;
         flag_path = false;
@@ -68,21 +67,21 @@ bool File::readFile() {
         for (int i = 0; i < tempLine.size() && tempLine.at(i) != '\n' && tempLine.at(i) != '#'; i++) {
             if (tempLine.at(i) == '[' && flag_name == false && flag_path == false && flag_empty == false)
                 flag_empty = true;
-            else if (flag_empty == true){
-                if (tempLine.at(i) == ']' )
-                    flag_empty = false;
-                else if (tempLine.at(i) == '\n') {
-                    qWarning("ERROR! Conf file no close \"]\"");
-                    qDebug() << "ERROR! Conf file no close \"]\"";
-                    userConf.close();
-                    return false;
-                }
+            else if (tempLine.at(i) != ']' && flag_empty == true)
+                qDebug() << "index ID" << tempLine.at(i);
+            else if (tempLine.at(i) == ']' && flag_empty == true)
+                flag_empty = false;
+            else if (tempLine.at(i) == '\n' && flag_empty == true) {
+                qWarning("ERROR! Conf file no close prefix \"");
+                qDebug() << "ERROR! Conf file no close prefix \"";
+                userConf.close();
+                return false;
             }
-            else if (tempLine.at(i) == '\"' && flag_path == false && flag_name == false && flag_empty == false)
+            else if (tempLine.at(i) == '"' && flag_path == false && flag_name == false && flag_empty == false)
                 flag_name = true;
-            else if (tempLine.at(i) != '\"' && flag_name == true)
+            else if (tempLine.at(i) != '"' && flag_name == true)
                 tempName.push_back(tempLine.at(i));
-            else if (tempLine.at(i) == '\"' && flag_name == true)
+            else if (tempLine.at(i) == '"' && flag_name == true)
                 flag_name = false;
             else if (tempLine.at(i) == '\n' && flag_name == true) {
                 qWarning("ERROR! Conf file no close name \"");
@@ -90,7 +89,7 @@ bool File::readFile() {
                 userConf.close();
                 return false;
             }
-            else if (tempLine.at(i) == '<' && line != 0 && flag_path == false && flag_name == false && flag_empty == false)
+            else if (tempLine.at(i) == '<' && flag_path == false && flag_name == false && flag_empty == false)
                 flag_path = true;
             else if (tempLine.at(i) != '>' && flag_path == true)
                 tempPath.push_back(tempLine.at(i));
@@ -103,9 +102,9 @@ bool File::readFile() {
                 return false;
             }        
         }
-        qDebug() << tempName;
+        qDebug() << "Button name" << tempName;
         listName << tempName;
-        qDebug() << tempPath;
+        qDebug() << "Path file" << tempPath;
         listPath << tempPath;
     }
     userConf.close();
@@ -113,7 +112,7 @@ bool File::readFile() {
 }
 
 QString File::getName(int line) {
-    qDebug() << "return: " <<  listName[line];
+    qDebug() << "return name: " <<  listName[line];
     return listName[line];
 }
 
@@ -122,7 +121,7 @@ QList<QString> File::getName() {
 }
 
 QString File::path(int line) {
-    qDebug() << "return: " << listPath[line];
+    qDebug() << "return path: " << listPath[line];
     return listPath[line];
 }
 

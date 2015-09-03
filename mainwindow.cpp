@@ -34,3 +34,14 @@ void MainWindow::on_pushButton_2_clicked()
 {
     emit signal_run(2);
 }
+
+void MainWindow::on_pushButton_exit_clicked()
+{
+    emit signal_exit();
+    qApp->exit();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    emit openConfig();
+}

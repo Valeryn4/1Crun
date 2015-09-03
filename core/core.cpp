@@ -14,13 +14,21 @@ Core::Core(File *parent) : File(parent)
 
 void Core::runProcess(int id) {
     if (!procRun) {
-        procCRun ->start(path(id));
+        qDebug() << "Process started";
+        procCRun->start(path(id));
         procRun = true;
     }
+    else
+        qDebug() << "No run! Process running!!";
 }
 
 void Core::engProcess() {
     procCRun->kill();
     procCRun->startDetached(shutdown);
-    emit qAppExit();
+
+}
+
+void Core::openConfig() {
+    QProcess * open = new QProcess(this);
+    open->startDetached("explorer");
 }
