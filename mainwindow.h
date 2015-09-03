@@ -6,6 +6,7 @@
 #include <QString>
 #include <QDebug>
 #include <QFile>
+#include <QDir>
 
 namespace Ui {
 class MainWindow;
@@ -22,6 +23,7 @@ private:
     QProcess * run;
     QString getName(int index);
     void run1C(int index);
+    void confPath();
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();

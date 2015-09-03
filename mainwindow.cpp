@@ -9,16 +9,8 @@ MainWindow::MainWindow(QWidget *parent) :
     run = new QProcess(this);
     path.clear();
     QFile filePath;
-    filePath.setFileName("C:\\run1C\\path.txt");
-    if (filePath.open(QIODevice::ReadOnly | QIODevice::Text)){
-        qDebug() << "Open";
-        while(!filePath.atEnd()) {
-            path << filePath.readLine();
-        }
-        filePath.close();
-    } else {
-        qDebug() << "can't open account list";
-    }
+
+    confPath();
     //shutdown session windows
     shutdown = "\"shutdown\" -l -f";
     //shutdown = "";
@@ -36,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->groupBoxtorg->setTitle("1C");
 
     //Signals
-    connect(run, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(end_program()));
+    connect(run, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(end_program()));
     connect(run, SIGNAL(error(QProcess::ProcessError)), this, SLOT(end_program()));
 
 
@@ -52,6 +44,49 @@ void MainWindow::on_pushButton_exit_clicked()
     QProcess endProc;
     endProc.startDetached(shutdown);
     qApp->exit();
+}
+
+void MainWindow::confPath() {
+    QFile filePath;
+    QFile tempFile;
+    //file individual reg;
+    QDir dir = QDir::home();
+    if (!dir.cd("AppData")) // to AppData
+        qWarning("Cannot find the \"\\AppData\" directory");
+    else if (!dir.cd("Roaming")) // to AppData\Roaming
+        qWarning("Cannot find the \"\\Roaming\" directory");
+    else if (!dir.cd("1CRun")) // to 1CRun
+    {
+        qDebug() << "no dir 1CRun";
+        if (!dir.mkdir("1CRun"))
+                qWarning("Error create 1CRun");
+        else {
+            qDebug() << "create 1CRun";
+            dir.cd("1CRun");
+        }
+    }
+
+    filePath.setFileName(dir.filePath("path.txt"));
+    QDir dir2 = QDir::current();
+    tempFile.setFileName(dir2.filePath("path.txt"));
+    qDebug() << dir.filePath("path.txt");
+    qDebug() << dir2.filePath("path.txt");
+    if (filePath.open(QIODevice::ReadOnly | QIODevice::Text)){
+        qDebug() << "Open";
+        while(!filePath.atEnd()) {
+            path << filePath.readLine();
+        }
+        filePath.close();
+    } else {
+       qDebug() << "can't open account list, ERROR " << filePath.error() << " Create new list";
+       QFile::copy(dir2.filePath("path.txt"), dir.filePath("path.txt"));
+       filePath.open(QIODevice::ReadOnly | QIODevice::Text);
+       while(!filePath.atEnd()) {
+            path << filePath.readLine();
+       }
+       filePath.close();
+
+    }
 }
 
 QString MainWindow::getName(int index) {
