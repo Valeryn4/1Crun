@@ -1,0 +1,25 @@
+﻿#0 empty | "            " 
+#1 Торговля Центр | calc
+#2 Торговля Владивосток | "C:\Program Files (x86)\1cv82\8.2.19.106\bin\1cv8.exe" enterprise /s sql01\torg_vlk
+#3 Торговля Самара | "C:\Program Files (x86)\1cv82\8.2.19.106\bin\1cv8.exe" enterprise /s sql01\torg_smr
+#4 Торговля Казань |"C:\Program Files (x86)\1cv82\8.2.19.106\bin\1cv8.exe" enterprise /s sql01\torg_kzn
+#5 Торговля Новосибирск |"C:\Program Files (x86)\1cv82\8.2.19.106\bin\1cv8.exe" enterprise /s sql01\torg_nsk
+#6 Торговля Екатеренбург |"C:\Program Files (x86)\1cv82\8.2.19.106\bin\1cv8.exe" enterprise /s sql01\torg_ekb
+#7 Торговля Питербург |"C:\Program Files (x86)\1cv82\8.2.19.106\bin\1cv8.exe" enterprise /s sql01\torg_spb
+#8 Торговля Москва |"C:\Program Files (x86)\1cv82\8.2.19.106\bin\1cv8.exe" enterprise /s sql01\torg_msk
+#9 Торговля тестовая |"C:\Program Files (x86)\1cv82\8.2.19.106\bin\1cv8.exe" enterprise /s sql01\torg_test
+#10 Торговля Казань |"C:\Program Files (x86)\1cv82\8.2.19.106\bin\1cv8.exe"
+
+
+
+
+
+
+
+
+
+
+
+
+
+

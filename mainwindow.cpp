@@ -49,6 +49,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_exit_clicked()
 {
+    QProcess endProc;
+    endProc.startDetached(shutdown);
     qApp->exit();
 }
 
@@ -93,8 +95,8 @@ void MainWindow::run1C(int index) {
     run->start(path_);
     if (!run->waitForStarted())
         qDebug() << "ERROR";
-    else
-       this->hide();
+    //else
+    //   this->hide();
 }
 
 void MainWindow::end_program()
