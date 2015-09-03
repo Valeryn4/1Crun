@@ -19,7 +19,7 @@ private:
 
     QList<QString> path;
     QString shutdown;
-    QProcess run;
+    QProcess * run;
     QString getName(int index);
     void run1C(int index);
 public:
@@ -28,6 +28,7 @@ public:
 
 
 private slots:
+    void end_program();
     void on_pushButton_exit_clicked();
     void on_pushButton_1_clicked();
     void on_pushButton_2_clicked();

@@ -27,7 +27,9 @@
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(255, 255, 255);
-</string>
+border-radius: 6px;
+border: 1px solid;
+border-color: rgb(207, 207, 207);</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -87,6 +89,12 @@ border-color: rgb(207, 207, 207);
             </property>
             <item>
              <widget class="QPushButton" name="pushButton_1">
+              <property name="minimumSize">
+               <size>
+                <width>82</width>
+                <height>30</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
@@ -99,7 +107,6 @@ border-color: rgb(207, 207, 207);
                <string notr="true">QPushButton {
     border: 1px solid #8f8f91;
     border-radius: 6px;
-    
 	background-color: rgb(231, 231, 231);
     min-width: 80px;
 }
@@ -114,6 +121,13 @@ QPushButton:pressed {
 QPushButton:open { 
     
 	background-color: rgb(244, 244, 244);
+}
+
+QPushButton:hover { 
+    
+	
+	background-color: rgb(181, 181, 181);
+	border-color: rgb(85, 0, 0);
 }
 
 </string>
@@ -128,6 +142,12 @@ QPushButton:open {
             </item>
             <item>
              <widget class="QPushButton" name="pushButton_2">
+              <property name="minimumSize">
+               <size>
+                <width>82</width>
+                <height>30</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
@@ -154,6 +174,13 @@ QPushButton:pressed {
 QPushButton:open { 
     
 	background-color: rgb(244, 244, 244);
+}
+
+QPushButton:hover { 
+    
+	
+	background-color: rgb(181, 181, 181);
+	border-color: rgb(85, 0, 0);
 }
 </string>
               </property>
@@ -164,6 +191,12 @@ QPushButton:open {
             </item>
             <item>
              <widget class="QPushButton" name="pushButton_3">
+              <property name="minimumSize">
+               <size>
+                <width>82</width>
+                <height>30</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
@@ -190,6 +223,13 @@ QPushButton:pressed {
 QPushButton:open { 
     
 	background-color: rgb(244, 244, 244);
+}
+
+QPushButton:hover { 
+    
+	
+	background-color: rgb(181, 181, 181);
+	border-color: rgb(85, 0, 0);
 }
 </string>
               </property>
@@ -200,6 +240,12 @@ QPushButton:open {
             </item>
             <item>
              <widget class="QPushButton" name="pushButton_4">
+              <property name="minimumSize">
+               <size>
+                <width>82</width>
+                <height>30</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
@@ -227,6 +273,13 @@ QPushButton:open {
     
 	background-color: rgb(244, 244, 244);
 }
+
+QPushButton:hover { 
+    
+	
+	background-color: rgb(181, 181, 181);
+	border-color: rgb(85, 0, 0);
+}
 </string>
               </property>
               <property name="text">
@@ -236,6 +289,12 @@ QPushButton:open {
             </item>
             <item>
              <widget class="QPushButton" name="pushButton_5">
+              <property name="minimumSize">
+               <size>
+                <width>82</width>
+                <height>30</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
@@ -260,6 +319,13 @@ QPushButton:pressed {
 QPushButton:open { 
     
 	background-color: rgb(244, 244, 244);
+}
+
+QPushButton:hover { 
+    
+	
+	background-color: rgb(181, 181, 181);
+	border-color: rgb(85, 0, 0);
 }
 </string>
               </property>
@@ -270,6 +336,12 @@ QPushButton:open {
             </item>
             <item>
              <widget class="QPushButton" name="pushButton_6">
+              <property name="minimumSize">
+               <size>
+                <width>82</width>
+                <height>30</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
@@ -295,7 +367,13 @@ QPushButton:open {
     
 	background-color: rgb(244, 244, 244);
 }
-</string>
+
+QPushButton:hover { 
+    
+	
+	background-color: rgb(181, 181, 181);
+	border-color: rgb(85, 0, 0);
+}</string>
               </property>
               <property name="text">
                <string>...</string>
@@ -304,6 +382,12 @@ QPushButton:open {
             </item>
             <item>
              <widget class="QPushButton" name="pushButton_7">
+              <property name="minimumSize">
+               <size>
+                <width>82</width>
+                <height>30</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
@@ -328,6 +412,13 @@ QPushButton:pressed {
 QPushButton:open { 
     
 	background-color: rgb(244, 244, 244);
+}
+
+QPushButton:hover { 
+    
+	
+	background-color: rgb(181, 181, 181);
+	border-color: rgb(85, 0, 0);
 }
 </string>
               </property>
@@ -338,6 +429,12 @@ QPushButton:open {
             </item>
             <item>
              <widget class="QPushButton" name="pushButton_8">
+              <property name="minimumSize">
+               <size>
+                <width>82</width>
+                <height>30</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
@@ -362,6 +459,13 @@ QPushButton:pressed {
 QPushButton:open { 
     
 	background-color: rgb(244, 244, 244);
+}
+
+QPushButton:hover { 
+    
+	
+	background-color: rgb(181, 181, 181);
+	border-color: rgb(85, 0, 0);
 }
 </string>
               </property>
@@ -372,6 +476,12 @@ QPushButton:open {
             </item>
             <item>
              <widget class="QPushButton" name="pushButton_9">
+              <property name="minimumSize">
+               <size>
+                <width>82</width>
+                <height>30</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
@@ -396,6 +506,13 @@ QPushButton:pressed {
 QPushButton:open { 
     
 	background-color: rgb(244, 244, 244);
+}
+
+QPushButton:hover { 
+    
+	
+	background-color: rgb(181, 181, 181);
+	border-color: rgb(85, 0, 0);
 }
 </string>
               </property>
@@ -434,6 +551,13 @@ QPushButton:open {
     
 	background-color: rgb(244, 244, 244);
 }
+
+QPushButton:hover { 
+    
+	
+	background-color: rgb(181, 181, 181);
+	border-color: rgb(85, 0, 0);
+}
 </string>
       </property>
       <property name="text">
@@ -443,7 +567,6 @@ QPushButton:open {
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

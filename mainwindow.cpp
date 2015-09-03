@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    run = new QProcess(this);
     path.clear();
     QFile filePath;
     filePath.setFileName("C:\\run1C\\path.txt");
@@ -19,8 +19,10 @@ MainWindow::MainWindow(QWidget *parent) :
     } else {
         qDebug() << "can't open account list";
     }
-    //shutdown = "\"shutdown\" -l -f";
-    shutdown = " ";
+    //shutdown session windows
+    shutdown = "\"shutdown\" -l -f";
+
+    // Button name
     ui->pushButton_1->setText(this->getName(1));
     ui->pushButton_2->setText(this->getName(2));
     ui->pushButton_3->setText(this->getName(3));
@@ -30,6 +32,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pushButton_7->setText(this->getName(7));
     ui->pushButton_8->setText(this->getName(8));
     ui->pushButton_8->setText(this->getName(9));
+    ui->groupBoxtorg->setTitle("1C");
+
+    //Signals
+    connect(run, SIGNAL(QProcess::finished()), this, SLOT(end_program()));
+    connect(run, SIGNAL(QProcess::error()), this, SLOT(end_program()));
+
 
 }
 
@@ -79,14 +87,14 @@ void MainWindow::run1C(int index) {
     }
 
 
-    run.start(path_);
+    run->start(path_);
     this->hide();
-    run.waitForFinished();
-    run.kill();
-    run.start(shutdown);
-    run.waitForFinished();
-    qApp->exit();
+}
 
+void MainWindow::end_program() {
+    run->start(shutdown);
+    run->waitForFinished();
+    qApp->exit();
 }
 
 
