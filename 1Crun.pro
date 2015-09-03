@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui process
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,8 +13,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    core/file.cpp \
+    core/core.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    core/file.h \
+    core/core.h
 
 FORMS    += mainwindow.ui
