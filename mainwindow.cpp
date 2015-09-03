@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     //shutdown session windows
     shutdown = "\"shutdown\" -l -f";
+    //shutdown = "";
 
     // Button name
     ui->pushButton_1->setText(this->getName(1));
@@ -31,12 +32,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pushButton_6->setText(this->getName(6));
     ui->pushButton_7->setText(this->getName(7));
     ui->pushButton_8->setText(this->getName(8));
-    ui->pushButton_8->setText(this->getName(9));
+    ui->pushButton_9->setText(this->getName(9));
     ui->groupBoxtorg->setTitle("1C");
 
     //Signals
-    connect(run, SIGNAL(QProcess::finished()), this, SLOT(end_program()));
-    connect(run, SIGNAL(QProcess::error()), this, SLOT(end_program()));
+    connect(run, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(end_program()));
+    connect(run, SIGNAL(error(QProcess::ProcessError)), this, SLOT(end_program()));
 
 
 }
@@ -61,7 +62,7 @@ QString MainWindow::getName(int index) {
         name.push_back(temp.at(i));
 
     }
-    if (name.size() > 15)
+    if (name.size() > 50)
         return "ERROR SIZE NAME";
     return name;
 }
@@ -69,8 +70,8 @@ QString MainWindow::getName(int index) {
 void MainWindow::run1C(int index) {
     bool flag = false;
     QString path_;
+    path_.clear();
     QString pathlist = path[index];
-    pathlist.clear();
 
     if (pathlist.size() > 5) {
         for (int i = 0; i < pathlist.size() ; i++)
@@ -81,6 +82,8 @@ void MainWindow::run1C(int index) {
                 if (pathlist.at(i) == '\n')
                     break;
                 path_.push_back(pathlist.at(i));
+                qDebug() << pathlist.at(i);
+
             }
     } else {
         path_ = "";
@@ -88,12 +91,17 @@ void MainWindow::run1C(int index) {
 
 
     run->start(path_);
-    this->hide();
+    if (!run->waitForStarted())
+        qDebug() << "ERROR";
+    else
+       this->hide();
 }
 
-void MainWindow::end_program() {
-    run->start(shutdown);
-    run->waitForFinished();
+void MainWindow::end_program()
+{
+    qDebug() << "closeProcess";
+    QProcess endProc;
+    endProc.startDetached(shutdown);
     qApp->exit();
 }
 
