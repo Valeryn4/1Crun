@@ -10,16 +10,17 @@ class Core : public File
     Q_OBJECT
 private:
     //File * file;
-    QProcess * proc1CRun;
+    QProcess * procCRun;
     bool procRun;
     QString shutdown;
 
 public:
-    explicit core(File *parent = 0);
+    explicit Core(File *parent = 0);
 
 signals:
-    void signal_1CRun(int n);
-    void signal_1Cstop();
+    void signal_CRun(int n);
+    void signal_Cstop();
+    void qAppExit();
 
 private slots:
     void runProcess(int n);

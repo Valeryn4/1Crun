@@ -75,7 +75,7 @@ border-color: rgb(207, 207, 207);</string>
       <widget class="QPushButton" name="pushButton_exit">
        <property name="minimumSize">
         <size>
-         <width>120</width>
+         <width>82</width>
          <height>20</height>
         </size>
        </property>
@@ -237,7 +237,7 @@ QPushButton:hover {
 </string>
              </property>
              <property name="text">
-              <string notr="true">Центр</string>
+              <string notr="true">...</string>
              </property>
              <property name="autoRepeatInterval">
               <number>100</number>
@@ -289,7 +289,7 @@ QPushButton:hover {
 </string>
              </property>
              <property name="text">
-              <string>Владивосток</string>
+              <string>...</string>
              </property>
             </widget>
            </item>
@@ -338,7 +338,7 @@ QPushButton:hover {
 </string>
              </property>
              <property name="text">
-              <string>Самара</string>
+              <string>...</string>
              </property>
             </widget>
            </item>
@@ -387,7 +387,7 @@ QPushButton:hover {
 </string>
              </property>
              <property name="text">
-              <string>Казань</string>
+              <string>...</string>
              </property>
             </widget>
            </item>

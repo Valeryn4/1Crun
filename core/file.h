@@ -5,6 +5,7 @@
 #include <QString>
 #include <QList>
 #include <QDir>
+#include <QDebug>
 
 class File : public QObject
 {
@@ -12,22 +13,23 @@ class File : public QObject
 private:
     QList<QString> listPath;
     QList<QString> listName;
-    QDir defaultDir = QDir::current(); //Путь стандартного конфига
-    QDir userDir = QDir::home();       //Путь конфига юзера
+    QDir defaultDir; //Путь стандартного конфига
+    QDir userDir;       //Путь конфига юзера
     QFile defaultConf;
     QFile userConf;
-    QString defaultFile = "default.txt";
-    QString userFile = "conf.txt";
+    QString defaultFile;
+    QString userFile;
 
     bool readFile();
 
 protected:
-    explicit file(QObject *parent = 0);
-
     QString path(int line);
+public:
+    explicit File(QObject *parent = 0);
+    QString getName(int line);
+    QList<QString> getName();
 
 signals:
-    QString name(int line);
 
 public slots:
 };
