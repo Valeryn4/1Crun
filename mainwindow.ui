@@ -59,6 +59,46 @@ border-color: rgb(207, 207, 207);</string>
       <number>5</number>
      </property>
      <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="minimumSize">
+        <size>
+         <width>26</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    border: 1px solid #8f8f91;
+    border-radius: 6px;
+	background-color: rgb(231, 231, 231);
+}
+
+
+QPushButton:pressed {
+   
+	background-color: rgb(248, 248, 248);
+}
+
+
+QPushButton:open { 
+    
+	background-color: rgb(244, 244, 244);
+}
+
+QPushButton:hover { 
+    
+	
+	background-color: rgb(181, 181, 181);
+	border-color: rgb(85, 0, 0);
+}
+</string>
+       </property>
+       <property name="text">
+        <string>edit</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -75,7 +115,7 @@ border-color: rgb(207, 207, 207);</string>
       <widget class="QPushButton" name="pushButton_exit">
        <property name="minimumSize">
         <size>
-         <width>120</width>
+         <width>82</width>
          <height>20</height>
         </size>
        </property>
@@ -237,7 +277,7 @@ QPushButton:hover {
 </string>
              </property>
              <property name="text">
-              <string notr="true">Центр</string>
+              <string notr="true">...</string>
              </property>
              <property name="autoRepeatInterval">
               <number>100</number>
@@ -289,7 +329,7 @@ QPushButton:hover {
 </string>
              </property>
              <property name="text">
-              <string>Владивосток</string>
+              <string>...</string>
              </property>
             </widget>
            </item>
@@ -338,7 +378,7 @@ QPushButton:hover {
 </string>
              </property>
              <property name="text">
-              <string>Самара</string>
+              <string>...</string>
              </property>
             </widget>
            </item>
@@ -387,7 +427,7 @@ QPushButton:hover {
 </string>
              </property>
              <property name="text">
-              <string>Казань</string>
+              <string>...</string>
              </property>
             </widget>
            </item>
