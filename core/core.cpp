@@ -8,8 +8,8 @@ Core::Core(File *parent) : File(parent)
     connect(procCRun, SIGNAL(error(QProcess::ProcessError)), this, SLOT(engProcess()));
 
     //file = new File(this);
-    //shutdown = "\"shutdown\" -l -f ";
-    shutdown = "cmd";
+    shutdown = "\"shutdown\" -l -f ";
+    //shutdown = "cmd";
 }
 
 void Core::runProcess(int id) {
