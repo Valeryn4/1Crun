@@ -13,6 +13,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::closeEvent(QCloseEvent* event)
+{
+    event->ignore();
+}
+
 void MainWindow::nameButton(QList<QString> list) {
     ui->pushButton_1->setText(list[1]);
     ui->pushButton_2->setText(list[2]);

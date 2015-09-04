@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     QObject::connect(&w, SIGNAL(openConfig()), &RunC, SLOT(openConfig()));
 
     w.nameButton(RunC.getName());
-    w.setWindowFlags(Qt::FramelessWindowHint);
+    //w.setWindowFlags(Qt::FramelessWindowHint);
     w.show();
 
     return a.exec();

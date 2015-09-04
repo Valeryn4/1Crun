@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QList>
 #include <QDebug>
+#include <QEvent>
+#include <QCloseEvent>
 
 namespace Ui {
 class MainWindow;
@@ -17,18 +19,20 @@ private:
 public:
     explicit MainWindow(QWidget *parent = 0);
     void nameButton(QList<QString> list);
+    virtual void closeEvent(QCloseEvent *event);
     ~MainWindow();
 signals:
     void signal_run(int n);
     void signal_exit();
     void openConfig();
 private slots:
-    void on_pushButton_1_clicked();
-    void on_pushButton_2_clicked();
-
     void on_pushButton_exit_clicked();
 
     void on_pushButton_clicked();
+
+    void on_pushButton_1_clicked();
+
+    void on_pushButton_2_clicked();
 
     void on_pushButton_3_clicked();
 
