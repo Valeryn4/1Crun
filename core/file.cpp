@@ -36,6 +36,7 @@ bool File::readFile() {
     bool flag_empty;
     bool flag_name;
     bool flag_path;
+    bool write;
     QString tempLine;
     QString tempName;
     QString tempPath;
@@ -57,6 +58,7 @@ bool File::readFile() {
     //  ^
     //commit  
     while (!userConf.atEnd()) {
+        write = false;
         flag_empty = false;
         flag_name = false;
         flag_path = false;
@@ -65,47 +67,52 @@ bool File::readFile() {
         tempLine.clear();
         tempLine.push_back(userConf.readLine());
         for (int i = 0; i < tempLine.size() && tempLine.at(i) != '\n' && tempLine.at(i) != '#'; i++) {
-            if (tempLine.at(i) == '[' && flag_name == false && flag_path == false && flag_empty == false)
+            if (tempLine.at(i) == '[' && flag_name == false && flag_path == false && flag_empty == false) {
                 flag_empty = true;
-            else if (tempLine.at(i) != ']' && flag_empty == true)
+                write = true;
+            }
+            else if (tempLine.at(i) == '"' && flag_path == false && flag_name == false && flag_empty == false)
+                flag_name = true;
+            else if (tempLine.at(i) == '<' && flag_path == false && flag_name == false && flag_empty == false)
+                flag_path = true;
+            else if (tempLine.at(i) != ']' && flag_empty == true && flag_path == false && flag_name == false)
                 qDebug() << "index ID" << tempLine.at(i);
-            else if (tempLine.at(i) == ']' && flag_empty == true)
+            else if (tempLine.at(i) == ']' && flag_empty == true && flag_path == false && flag_name == false)
                 flag_empty = false;
-            else if (tempLine.at(i) == '\n' && flag_empty == true) {
+            else if (tempLine.at(i) == '\n' && flag_empty == true && flag_path == false && flag_name == false) {
                 qWarning("ERROR! Conf file no close prefix \"");
                 qDebug() << "ERROR! Conf file no close prefix \"";
                 userConf.close();
                 return false;
             }
-            else if (tempLine.at(i) == '"' && flag_path == false && flag_name == false && flag_empty == false)
-                flag_name = true;
-            else if (tempLine.at(i) != '"' && flag_name == true)
+            else if (tempLine.at(i) != '"' && flag_name == true && flag_empty == false && flag_path == false)
                 tempName.push_back(tempLine.at(i));
-            else if (tempLine.at(i) == '"' && flag_name == true)
+            else if (tempLine.at(i) == '"' && flag_name == true && flag_empty == false && flag_path == false)
                 flag_name = false;
-            else if (tempLine.at(i) == '\n' && flag_name == true) {
+            else if (tempLine.at(i) == '\n' && flag_name == true && flag_empty == false && flag_path == false) {
                 qWarning("ERROR! Conf file no close name \"");
                 qDebug() << "ERROR! Conf file no close name \"";
                 userConf.close();
                 return false;
             }
-            else if (tempLine.at(i) == '<' && flag_path == false && flag_name == false && flag_empty == false)
-                flag_path = true;
-            else if (tempLine.at(i) != '>' && flag_path == true)
+            else if (tempLine.at(i) != '>' && flag_path == true && flag_name == false && flag_empty == false)
                 tempPath.push_back(tempLine.at(i));
-            else if (tempLine.at(i) == '>' && flag_path == true)
+            else if (tempLine.at(i) == '>' && flag_path == true && flag_name == false && flag_empty == false)
                 flag_path = false;
-            else if (tempLine.at(i) == '\n' && flag_path == true) {
+            else if (tempLine.at(i) == '\n' && flag_path == true && flag_name == false && flag_empty == false) {
                 qWarning("ERROR! Conf file no close name >");
                 qDebug() << "ERROR! Conf file no close name >";
                 userConf.close();
                 return false;
-            }        
+            }
         }
-        qDebug() << "Button name" << tempName;
-        listName << tempName;
-        qDebug() << "Path file" << tempPath;
-        listPath << tempPath;
+        if (write == true) {
+            qDebug() << "Button name" << tempName;
+            listName << tempName;
+            qDebug() << "Path file" << tempPath;
+            listPath << tempPath;
+        }
+
     }
     userConf.close();
     return true;
