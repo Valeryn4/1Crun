@@ -9,7 +9,6 @@ class Core : public File
 {
     Q_OBJECT
 private:
-    //File * file;
     QProcess * procCRun;
     bool procRun;
     QString shutdown;
@@ -18,8 +17,8 @@ public:
     explicit Core(File *parent = 0);
 
 signals:
-    void signal_CRun(int n);
-    void signal_Cstop();
+   // void signal_CRun(int n);
+   // void signal_Cstop();
 
 public slots:
     void runProcess(int n);
