@@ -2,24 +2,23 @@
 
 File::File(QObject *parent) : QObject(parent) {
     QDir dir;
-    dir.current();
+    dir = dir.current();
 
-    QString defConfPath = dir.filePath("default.ini");
-    defaultConf = new QSettings(defConfPath, QSettings::IniFormat, this);
-    config = new QSettings(QSettings::IniFormat, QSettings::UserScope, "1CRun", "config", this);
-
+    defaultConf = new QSettings(dir.filePath("default.ini"), QSettings::IniFormat);
+    config = new QSettings(QSettings::IniFormat, QSettings::UserScope, "1CRun", "config");
     if(!QFile::exists(defaultConf->fileName()))
         if(!creatFile()) {
-            qWarning("Failed create default.ini");
+            qDebug() << "Failed create default.ini. ERROR " << defaultConf->status();
         }
     if(!readFile()) {
-        qWarning("Failed read config.ini");
+        qDebug() << "Failed read config.ini";
     }
 
 }
 
 bool File::creatFile() {
     int n;
+
     //[system]
     defaultConf->setValue("system/version", 1);
     defaultConf->setValue("system/title", "1C");
@@ -34,6 +33,9 @@ bool File::creatFile() {
         defaultConf->setValue("path", " ");
     }
     defaultConf->endArray();
+    defaultConf->sync();
+    if (defaultConf->status() != 0)
+        return false;
     return true;
 }
 
@@ -44,17 +46,17 @@ bool File::readFile() {
         if (defaultConf->value("system/version").toInt() > config->value("system/version").toInt()) {
            QFile(config->fileName()).remove();
            if (!QFile::copy(defaultConf->fileName(), config->fileName())) {
-               qDebug() << "fail copy default.ini to config.ini";
+               qDebug() << "fail copy default.ini to config.ini 47";
                return false;
            }
         }
     } else {
         if (!QFile::copy(defaultConf->fileName(), config->fileName())) {
-            qDebug() << "fail copy default.ini to config.ini";
+            qDebug() << "fail copy default.ini to config.ini 53";
             return false;
         }
     }
-
+    config->sync();
     int n;
     n = config->value("system/buttons").toInt();
     config->beginReadArray("Button");
@@ -64,6 +66,7 @@ bool File::readFile() {
         listPath << config->value("path").toString();
     }
     config->endArray();
+    qDebug() << listPath[1];
     return true;
 }
 
