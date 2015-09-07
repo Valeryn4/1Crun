@@ -4,8 +4,17 @@ File::File(QObject *parent) : QObject(parent) {
     QDir dir;
     dir = dir.current();
 
-    defaultConf = new QSettings(dir.filePath("default.ini"), QSettings::IniFormat);
-    config = new QSettings(QSettings::IniFormat, QSettings::UserScope, "1CRun", "config");
+    //create DIR;
+    QString confPath = QDir::homePath() + "/AppData/Roaming/1CRun";
+    QDir confDir(confPath);
+    qDebug() << confPath;
+    if(!confDir.exists())
+        if(!confDir.mkpath(confPath)) {
+            qDebug() << "Fail mkdir /AppData/Roaming/1CRun";
+        }
+    //create conf file
+    defaultConf = new QSettings(dir.filePath("default.ini"), QSettings::IniFormat, this);
+    config = new QSettings(QSettings::IniFormat, QSettings::UserScope, "1CRun", "config", this);
     if(!QFile::exists(defaultConf->fileName()))
         if(!creatFile()) {
             qDebug() << "Failed create default.ini. ERROR " << defaultConf->status();
@@ -14,11 +23,11 @@ File::File(QObject *parent) : QObject(parent) {
         qDebug() << "Failed read config.ini";
     }
 
+
 }
 
 bool File::creatFile() {
     int n;
-
     //[system]
     defaultConf->setValue("system/version", 1);
     defaultConf->setValue("system/title", "1C");
@@ -56,6 +65,8 @@ bool File::readFile() {
             return false;
         }
     }
+    QFile(defaultConf->fileName()).close();
+    delete defaultConf; //разблокируем default.ini (Приценденты были, когда файл блокировкался)
     config->sync();
     int n;
     n = config->value("system/buttons").toInt();
@@ -66,7 +77,6 @@ bool File::readFile() {
         listPath << config->value("path").toString();
     }
     config->endArray();
-    qDebug() << listPath[1];
     return true;
 }
 
