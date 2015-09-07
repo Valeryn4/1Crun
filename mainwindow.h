@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QEvent>
 #include <QCloseEvent>
+#include <QSettings>
 
 namespace Ui {
 class MainWindow;
