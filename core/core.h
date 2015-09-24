@@ -3,14 +3,21 @@
 
 #include "file.h"
 #include <QProcess>
+#include <QVector>
+#include <QMap>
 
+enum pStatus {
+    RUN,
+    SLEEP
+};
 
 class Core : public File
 {
     Q_OBJECT
 private:
-    QProcess * procCRun;
-    bool procRun;
+    QMap<int, pStatus> procStatus;
+    QVector<QProcess*> procCRun;
+    int procRun;
     QString shutdown;
 
 public:
@@ -24,6 +31,7 @@ public slots:
     void runProcess(int n);
     void openConfig();
     void engProcess();
+    void killAllProcess();
 };
 
 #endif // CORE_H
